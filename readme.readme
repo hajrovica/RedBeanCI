@@ -1,0 +1,17 @@
+Just found out that RedBean plugin which included in this CI is outdated.
+
+So following tutor maded a RedBean library for use.  Last ver of RB used
+
+Load the library like any other
+
+$this->load->library('rb');
+
+Do fun stuff with the beans in your controller:
+
+$album = R::dispense('album');
+$album->title = '13 Songs';
+$album->artist = 'Fugazi';
+$album->year = 1990;
+$album->rating = 5;
+$id = R::store($album);
+
