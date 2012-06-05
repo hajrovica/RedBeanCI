@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Todo Application</title>
+<meta http-equiv='Content-Type' content='Type=text/html; charset=utf-8'>
+
+<link href='http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<style>
+	*{ margin:0px; padding:0px; }
+	body {
+		background-color: #267;
+		color: black;
+		font: 15pt 'Swanky and Moo Moo';
+		text-align:center;
+	
+	}
+	h1 {
+		font: 30pt 'Holtwood One SC';
+		color: #EEE;
+		text-shadow: 1px 1px 2px #000000;
+	}
+	
+	ul {
+	   	background-color: #223333;
+	    	box-shadow: 0 0 60px #000000 inset;
+	    	display: block;
+	    	list-style: none outside none;
+	    	min-height: 300px;
+  	    	width: 100%;
+  	    	overflow:hidden;
+  	    	height:100%;
+  	    	padding-top:20px;	
+	}
+	
+	li {
+		
+		letter-spacing:-7px;
+		font-family:'Swanky and Moo Moo';
+		font-weight:bold;
+		font-size:35px;
+		background-color: #EE8;
+		box-shadow: 1px 1px 10px #000;
+		margin:20px;
+		margin-top:30px;
+		padding:20px;
+		float:left;
+		width:200px;
+		
+		background-image: linear-gradient(bottom, rgb(194,154,21) 20%, rgb(245,214,76) 60%);
+		background-image: -o-linear-gradient(bottom, rgb(194,154,21) 20%, rgb(245,214,76) 60%);
+		background-image: -moz-linear-gradient(bottom, rgb(194,154,21) 20%, rgb(245,214,76) 60%);
+		background-image: -webkit-linear-gradient(bottom, rgb(194,154,21) 20%, rgb(245,214,76) 60%);
+		background-image: -ms-linear-gradient(bottom, rgb(194,154,21) 20%, rgb(245,214,76) 60%);
+		
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.2, rgb(194,154,21)),
+			color-stop(0.6, rgb(245,214,76))
+		);
+		
+	}
+	
+	li .details {
+		letter-spacing:-1px;
+		font-size:18px;
+		padding-top:10px;
+	}
+
+	
+	
+	fieldset {
+		border:1px red solid;
+		clear:both;
+		width:700px;
+		color: #FFF;
+		font-size: 18pt;
+		border-width: 0px;
+		padding:10px;
+		margin-left:auto;
+		margin-right:auto;
+		
+	}
+	
+	.taskButtons {
+		width:250px;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		margin-top:20px;
+	}
+	
+	.button {
+		
+		margin:5px;
+		
+		float:left;
+		width: 110px;
+		height: 40px;
+		background-color: #831;
+		box-shadow: 0px 0px 12px #000;
+		color:white;
+		border-radius: 5px;
+		border: none;
+		cursor:pointer;
+		font-family: 'Holtwood One SC';
+		font-size: 20px;
+	}
+	
+	.add {
+	
+		background-image: linear-gradient(bottom, rgb(120,0,0) 20%, rgb(224,0,0) 60%);
+		background-image: -o-linear-gradient(bottom, rgb(120,0,0) 20%, rgb(224,0,0) 60%);
+		background-image: -moz-linear-gradient(bottom, rgb(120,0,0) 20%, rgb(224,0,0) 60%);
+		background-image: -webkit-linear-gradient(bottom, rgb(120,0,0) 20%, rgb(224,0,0) 60%);
+		background-image: -ms-linear-gradient(bottom, rgb(120,0,0) 20%, rgb(224,0,0) 60%);
+
+		background-image: -webkit-gradient(
+			linear,
+			left bottom,
+			left top,
+			color-stop(0.2, rgb(120,0,0)),
+			color-stop(0.6, rgb(224,0,0))
+		);
+
+	
+	}
+	.done {
+			
+		background-image: linear-gradient(bottom, rgb(38,150,0) 48%, rgb(78,196,28) 74%);
+		background-image: -o-linear-gradient(bottom, rgb(38,150,0) 48%, rgb(78,196,28) 74%);
+		background-image: -moz-linear-gradient(bottom, rgb(38,150,0) 48%, rgb(78,196,28) 74%);
+		background-image: -webkit-linear-gradient(bottom, rgb(38,150,0) 48%, rgb(78,196,28) 74%);
+		background-image: -ms-linear-gradient(bottom, rgb(38,150,0) 48%, rgb(78,196,28) 74%);
+		
+		background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.48, rgb(38,150,0)),
+		color-stop(0.74, rgb(78,196,28))
+		);
+
+
+	
+	}
+	
+	.sticky {
+		background-color: #FFF;
+		-webkit-transform: rotate(3deg);
+		-moz-transform: rotate(3deg);
+		width:100px;
+		height:30px;
+		opacity:0.5;
+		position:relative;
+		top:-40px;
+		left:50px;
+		box-shadow: 0 0 2px #000;			
+	}
+	
+	.taskSection {
+		padding-bottom:10px;
+		border: 0px white solid;
+		width:340px;
+		overflow:hidden;
+		float:left;
+	}
+	
+	.taskSection .taskDescription input {
+		font-size:20px;
+		width:300px;
+		height:30px;
+	}
+	
+	.qualifySection {
+		border: 0px white solid;
+		width:340px;
+		overflow:hidden;
+		float:right;
+	}
+	label {
+		display:block;
+		font-family:'Holtwood One SC';
+		font-size:20px;
+		text-shadow: 1px 0px 2px #000;
+	}
+	.selectionArea {
+		float:left;
+	}
+	.selectionArea select {
+		font-size: 20px;
+		width:150px;
+		margin:10px;
+	}
+	
+	input,select { border:none; padding:2px; }
+	
+</style>
+
+<form action="" method="post">
+	
+	<fieldset>
+	
+		<div class="taskSection">
+			
+			<div class="taskDescription">
+				<label>
+					<span>Add new task:</span>
+				</label>
+				<input placeholder="Add your new task here..." type="text" name="task" value="" />
+			</div>
+			
+			<div class="taskButtons">
+				<input class="button add" type="submit" name="add" value="Add" />
+				<input class="button done" type="submit" name="trash" value="Done" />
+				
+			</div>
+			
+		</div>
+		
+		<div class="qualifySection">
+			
+			<div class="selectionArea">
+				<label>
+					<span>Assign to:</span>
+				</label>
+				<select name="assign[]" multiple="multiple">
+					<!-- cut:person -->
+					<option value="#value#" ><span>&#9787;</span>#label#</option>
+					<!-- /cut:person -->
+					<!-- paste:people -->
+				</select>
+			</div>
+			
+			<div class="selectionArea">
+				<label>
+					<span>Category:</span>
+				</label>
+				<select name="cats[]" multiple="multiple">
+					<!-- cut:category -->
+					<option value="#value#" ><span>&#10000;</span>#label#</option>
+					<!-- /cut:category -->
+					<!-- paste:categories -->
+				</select>
+			
+			</div>
+		</div>
+		
+	</fieldset>
+	
+	<ul>
+		<!-- cut:listItem -->
+		<li>
+			<div class="sticky">&nbsp;</div>
+			<input type="checkbox" name="done[]" value="#value#">
+			<span class="description">#description#</span>
+			<br />
+			<div class="details">
+				Assigned to:
+				<span>#people#</span>
+				<br />
+				Tags:
+				<span>#tags#</span>
+			</div>
+		</li>			
+		<!-- /cut:listItem -->
+		<!-- paste:listItems -->
+	</ul>
+</form>
+</body>
+</html>
