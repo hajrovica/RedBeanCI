@@ -2,6 +2,9 @@
 
 class Welcome extends MY_Controller {
 
+	function __construct() {
+        parent::__construct();
+    }
 	/**
 	 * Index Page for this controller.
 	 *
@@ -37,14 +40,14 @@ class Welcome extends MY_Controller {
 		}
 
 		//Put soome data in table
-		/*$book = R::dispense('book');
-		$book->title = "DevPHP with Rbeans $book->id";
-		$book->author = "Charles Xavier $book->id";
+		// $book = R::dispense('book');
+		// $book->title = "DevPHP with Rbeans $book->id";
+		// $book->author = "Charles Xavier $book->id";
 
 
-		$id = R::store($book);
+		// $id = R::store($book);
 
-		echo $id . "stored $book->title  and $book->author in DB";*/
+		// echo $id . "stored $book->title  and $book->author in DB";
 
 
 		$this->_outpt('welcome_message');
@@ -99,7 +102,7 @@ class Welcome extends MY_Controller {
 					->from('book')
 					->where('title like ?')
 					->put('%t%')
-					->get('col') ; //cases EMPTY - multidim array with assoc array column - value
+					->get('') ; //cases EMPTY - multidim array with assoc array column - value
 							  //row returns one row
 							  //with next 2 cases to produce some results we need to pinpoint column not ALL by *
 							  //col - flat array of column valuses
@@ -112,6 +115,24 @@ class Welcome extends MY_Controller {
 
 		print_r($book);
 
+	}
+
+	function mdl(){
+		//$this->load->library('rb');
+        $this->load->model('model_welcome');
+
+        //IMPORTANT IMPORTANT dispense NAME and model_NAME
+        // must be same for actions on beans to throw messages
+        $song = R::dispense('welcome');
+        $song->title  = 'bluuuh';
+        $song->track = 4;
+        $id = R::store($song);
+        echo $id;
+
+
+		//echo $lifeCycle;
+
+		 //echo $this->view_data['lifeCycle'];
 	}
 }
 
