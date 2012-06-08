@@ -121,14 +121,36 @@ class Welcome extends MY_Controller {
 		//$this->load->library('rb');
         $this->load->model('model_welcome');
 
-        //IMPORTANT IMPORTANT dispense NAME and model_NAME
+        // IMPORTANT IMPORTANT dispense NAME and model_NAME
         // must be same for actions on beans to throw messages
         $song = R::dispense('welcome');
         $song->title  = 'bluuuh';
         $song->track = 4;
         $id = R::store($song);
+        echo $id . "<br>";
+
+        $song = R::load('welcome', 11);
+        echo $song;
+        $song->track_seconf = 4;
+        $id = R::store($song);
+        //custom added method
+        $song->test();
+
+        echo $song;
+
         echo $id;
 
+        $id = R::load('welcome', 6);
+
+        if (!$id->id) {
+        	echo "Nothing to delete!"."<br>";        }
+        	else{
+
+        		echo "For delete: " . $id->id ."<br>";
+        		R::trash($id);
+        		echo $id . "- deleted!";
+
+        	}
 
 		//echo $lifeCycle;
 
