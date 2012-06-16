@@ -23,7 +23,7 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
 		$this->view_data['title'] = "Page TITLE!";
-		$this->view_data['data'] = "Lipsum and smore tu ff  for all<hr>";
+		$this->view_data['data'] = "Lipsum and more stuff  for all<hr>";
 		$this->view_data['data'] .= "<br>Test message DATA carrier";
 
 		$books_count = R::count('book');
@@ -73,7 +73,9 @@ class Welcome extends MY_Controller {
 		//so we check if ID is equal to 1 and if it is it means that title
 		//contains 1 in it and we do not update it
 		if ($arr['id'] == 1) {
-			echo "Title contains 1 there will be no insert via Rbeans exec method";
+			echo "<br>
+            This is message if array id contains 1:<br>
+            Title contains 1 there will be no insert via Rbeans exec method";
 		}else{
 
 				//R::exec method clean sql
@@ -124,21 +126,26 @@ class Welcome extends MY_Controller {
         // IMPORTANT IMPORTANT dispense NAME and model_NAME
         // must be same for actions on beans to throw messages
         $song = R::dispense('welcome');
-        $song->title  = 'bluuuh';
-        $song->track = 4;
+        $song->title  = 'bluuuh1';
+        $song->track = 5;
         $id = R::store($song);
-        echo $id . "<br>";
+        echo "<br> Message 1 <br>" . $id . "<br>---<br>";
 
         $song = R::load('welcome', 11);
         echo $song;
-        $song->track_seconf = 4;
+        $song->track_seconf = 3;
         $id = R::store($song);
         //custom added method
-        $song->test();
 
-        echo $song;
+        echo "<br> Costum method test<br>" . $song->test() . "<br>---<br>";
+        echo "<br>Echo \$song <br>" . $song . "<br>---<br>";
 
-        echo $id;
+        echo "<br>$$id after method<br>" . $id . "<br>---<br>";
+
+
+
+        //echo $id;
+        echo "<br> Begin load ID 6<br>";
 
         $id = R::load('welcome', 6);
 
@@ -156,6 +163,13 @@ class Welcome extends MY_Controller {
 
 		 //echo $this->view_data['lifeCycle'];
 	}
+
+    function meta(){
+        $tables = R::$writer->getTables();
+        print_r($tables);
+
+
+    }
 }
 
 /* End of file welcome.php */
