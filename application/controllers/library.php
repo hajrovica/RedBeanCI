@@ -12,7 +12,20 @@ class Library extends MY_Controller{
 
 
     function index(){
-        echo "<pre>";
+        //echo "<pre>";
+        //add student for courses example many  to many
+        list($st1, $st2, $st3) = R::dispense('student', 3);
+
+        $st1->name = 'Student6';
+        $st1->email = 'student6@email.com';
+        $st1->dob = '2012-06-27';
+        $st1->gender = 'male';
+
+
+
+        R::store($st1);
+
+
 
     }
 
