@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -259,3 +260,94 @@ function delete()
 }
 
 }
+=======
+<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+*
+*/
+class Ajax extends MY_Controller{
+        /**
+         * @name    _construct
+         *
+         * @desc    Load in the mode, and validation class
+         * @return void
+         * @author
+         **/
+        function _construct()
+        {
+            parent::_construct();
+
+            $this->load->model('model_user', 'users');
+            $this->load->library('form_validation');
+
+    }
+
+
+    function add()
+    {
+        $this->form_validation->set_rules('name',       'First Name',       'required|max_length[20]');
+        $this->form_validation->set_rules('surname',    'Last Name',        'required|max_length[20]');
+        $this->form_validation->set_rules('dob',        'DoB',              'required|exact_length[10]');
+        $this->form_validation->set_rules('gender',     'Gender',           'required|exact_length[1]');
+        $this->form_validation->set_rules('email',      'Email address',    'required|valid_email|max_length[50]');
+        // Set the form validation rules
+
+        if ($this->form_validation->run() != FALSE) {
+
+            //create data array for new user
+            $user = array(
+                    'name'    =>  $this->input->post('name'),
+                    'surname'     =>  $this->input->post('surname'),
+                    'dob'           =>  $this->input->post('dob'),
+                    'gender'        =>  $this->input->post('gender'),
+                    'email' =>  $this->input->post('email')
+
+                );
+
+            if ($add = $this->users->add($user)) {
+                //the user was added to DB
+                $data = array(
+                    'users' =>$this->users->get($add)
+
+                    );
+                $row_html = $this->load->view('table/table_rows.php', $data, TRUE);
+                //assign the view html of table row for new user
+
+                $return = array(
+                        'status'    => 'success',
+                        'message'   =>  $this->input->post('name') . ' added!',
+                        'html'      =>  $row_html
+
+                    );//set output status  message and table row html
+                echo json_encode($return);
+            }else{
+
+                    $return = array(
+
+                        'status'    =>      'failed',
+                        'message'   =>      'Failed to add to the DB'
+
+                    );
+                    echo json_encode($return);
+                    // return the error message
+
+
+
+            }
+
+        }else{
+            $return = array(
+                'status'    =>      'failed',
+                'message'   =>      validation_errors('', '&lt;br>')
+
+                );
+            echo json_encode($return);
+            // return the error message
+
+        }
+
+
+}
+
+>>>>>>> ajax table tutorial

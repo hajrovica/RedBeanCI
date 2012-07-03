@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 class Model_user extends CI_Model {
 
@@ -82,3 +83,51 @@ function __construct()
     /* Location: ./application/models/users_model.php */
 
 
+=======
+<?php
+
+class Model_user extends RedBean_SimpleModel {
+
+    function get($id = null)
+    {
+       if (is_null($id)) {
+            $student =  R::find('student');
+         }
+         else{
+
+            $student = R::load('student', $id);
+         }
+         return $student;
+    }
+
+
+    function add($data){
+
+        //active record implementation is quite easy
+        //i need to see how to implement create DB aspect of RB
+        //hmm assoc array that could maybe work
+        $this->db->insert('student', $data);
+        return $this->db->insert_id();
+
+
+
+    }
+
+    function update($data, $id){
+        $this->db->where('id', $id);
+        $this->db->update('student', $data);
+
+        return $this->db->affected_rows();
+    }
+
+
+    function delete($id){
+        $this->db->where('id', $id);
+        $this->db->delete('student');
+
+        return $this->db->affected_rows();
+
+    }
+
+}
+>>>>>>> ajax table tutorial

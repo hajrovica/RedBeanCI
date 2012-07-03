@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php $count = 0; ?>
 <?php foreach($users as $user): ?>
 
@@ -27,4 +28,35 @@
 </tr>
 
 <?php $count++; ?>
+=======
+<?php $count = 0; ?>
+<?php foreach($users as $user): ?>
+
+<tr id="row_<?php echo $user->id;?>" <?php echo($count % 2 ? 'class="alternate"' : '');?>>
+    <td><?php echo $user->name;?></td>
+    <td><?php echo $user->surname;?></td>
+    <td><?php echo $user->dob;?></td>
+    <td>
+        <?php
+        if ($user->gender == 'M')
+        {
+            echo 'Male';
+        }
+        else if ($user->gender == 'F')
+        {
+            echo 'Female';
+        }
+        ?>
+    </td>
+    <td><?php echo $user->email;?></td>
+    <td>
+        <ul class="buttons">
+            <li><button class="edit" id="update_<?php echo$user->id;?>">Update</button></li>
+            <li><button class="remove" id="remove_<?php echo$user->id;?>">Remove</button></li>
+        </ul>
+    </td>
+</tr>
+
+<?php $count++; ?>
+>>>>>>> ajax table tutorial
 <?php endforeach; ?>
